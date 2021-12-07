@@ -14,7 +14,7 @@
 
 ## 0. 팀소개
 > 팀명 : 띠모
-<center><img src="/photo/profile_.jpg" width="75%" height="75%"></center>
+<center><img src="/photo/profile.jpg" width="75%" height="75%"></center>
 
 ## 1. 서비스 소개 및 주요 기능
 집은 살면서 오래 머무는 공간 중 하나입니다. <br>
