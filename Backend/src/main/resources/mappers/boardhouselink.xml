@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.BoardHouseLinkMapper">
+
+	<insert id="insert" parameterType="BoardHouseLinkDto">
+		insert into boardhouselink (boardno,dongCode,aptCode)
+		values (#{boardno}, #{dongCode}, #{aptCode});
+	</insert>
+	
+
+	<select id="select" resultType="BoardHouseLinkDto" parameterType="int">
+		select *
+		from boardhouselink
+		where boardno = #{boardno}
+	</select>
+	
+	
+</mapper>

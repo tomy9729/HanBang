@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.HeartMapper">
+	
+	<insert id="insertHeart" parameterType="HeartDto">
+		insert into heart(email, boardno)
+		values(#{email}, #{boardno});
+	</insert>
+
+	<delete id="deleteHeart" parameterType="HeartDto">
+		delete from heart
+		where email = #{email} and boardno = #{boardno}
+	</delete>
+	
+	<!-- 사용자가 좋아요한 게시글 수  -->
+	<select id="countHeartUser" resultType="int" parameterType="string">
+		select count(heartno)
+		from heart
+		where email = #{email}
+	</select>
+	
+	<!-- 사용자가 좋아요한 게시글 목록 -->
+	<select id="listHeartUser" resultType="HeartDto" parameterType="string">
+		select heartno, email, boardno
+		from heart
+		where email = #{email}
+	</select>
+	
+	<!-- 게시글의 좋아요한 수 -->
+	<select id="countHeartBoard" resultType="int" parameterType="int">
+		select count(boardno)
+		from heart
+		where boardno = #{boardno}	
+	</select>
+	
+	<!-- 게시글의 좋아요한 사용자 목록 -->
+	<select id="listHeartBoard" resultType="HeartDto" parameterType="int">
+		select heartno, email, boardno
+		from heart
+		where boardno = #{boardno}
+	</select>
+	
+	<select id="getHeart" resultType="int" parameterType="HeartDto">
+		select heartno
+		from heart
+		where boardno = #{boardno} and email = #{email}
+	</select>
+	
+	
+</mapper>

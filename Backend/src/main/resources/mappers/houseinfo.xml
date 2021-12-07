@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.HouseInfoMapper">
+
+	<select id="list" parameterType="string" resultType="houseInfoDto">
+		select * from houseinfo
+		where dongCode like #{dongCode}
+		order by aptName
+	</select>
+	
+	<select id="select" parameterType="int" resultType="houseInfoDto">
+		select * from houseinfo 
+		where aptCode=#{aptCode}
+	</select>
+
+</mapper>

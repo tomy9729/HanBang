@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.hanbang.model.mapper.MemberMapper">
+	<!-- 
+	<select id="login" parameterType="memberDto" resultType="memberDto">
+		select email, pwd, nickname
+		from user
+		where email = #{email} and pwd = #{pwd}
+	</select>
+	
+	<select id="userInfo" parameterType="String" resultType="memberDto">
+		select email, pwd, nickname, followingcount, followercount
+		from user
+		where email = #{email}
+	</select> -->
+	
+	<select id="select" resultType="memberDto" parameterType="string">
+		select userno, email, pwd, nickname, followingcount, followercount, status
+		from user
+		where email = #{email}
+	</select>
+	
+	<insert id="insert" parameterType="memberDto">
+		insert into user(email, pwd, nickname, followingcount, followercount, status) 
+		values (#{email}, #{pwd}, #{nickname}, #{followingcount}, #{followercount}, #{status})
+	</insert>
+	
+	<update id="update" parameterType="memberDto">
+		update user
+		set pwd = #{pwd},
+			nickname = #{nickname},
+			followingcount = #{followingcount},
+		    followercount = #{followingcount},
+		    status = #{status}
+		where email = #{email};
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		delete from user
+		where email = #{email}
+	</delete>
+	
+	<!-- 
+	<select id="count" resultType="int">
+	
+	</select>
+	 -->
+</mapper>

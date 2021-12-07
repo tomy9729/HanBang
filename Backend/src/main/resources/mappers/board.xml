@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.BoardMapper">
+
+	<!-- 게시글 추가 -->
+	<insert id="insertBoard" parameterType="BoardDto">
+		insert into board (sqft, housetype, style, space, subject, content, heartcount, img, email, nickname)
+		values (#{sqft}, #{housetype}, #{style}, #{space}, #{subject}, #{content}, #{heartcount}, #{img}, #{email}, #{nickname});
+	</insert>
+	
+
+	<!-- 게시글 전체 조회 -->
+	<select id="listBoard" resultType="BoardDto">
+		select boardno, sqft, housetype, style, space, subject, content, heartcount, img, email, nickname
+		from board
+		order by boardno desc
+	</select>
+	
+	
+	<!-- 게시글 선택 조회 -->
+	<select id="selectBoard" parameterType="int" resultType="BoardDto">
+		select boardno, sqft, housetype, style, space, subject, content, heartcount, img, email, nickname 
+		from board
+		where boardno = #{boardno}
+		order by boardno
+	</select>
+	
+	<!-- 게시글 수정  -->
+	<update id="updateBoard" parameterType="BoardDto">
+		update board
+		set sqft = #{sqft},
+			housetype = #{housetype},
+			style = #{style},
+			space = #{space},
+			subject = #{subject}, 
+			content = #{content},
+			heartcount = #{heartcount},
+			img = #{img},
+			email = #{email},
+			nickname = #{nickname}
+		where boardno = #{boardno}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board
+		where boardno = #{boardno}
+	</delete>
+	
+	
+	<select id="getBoardno" resultType="int">
+		select boardno
+		from board
+		order by boardno Desc Limit 1
+	</select>
+	
+	<select id="getBoardByEmail" resultType="Integer" parameterType="String">
+		select boardno
+		from board
+		where email = #{email}
+		order by boardno Desc
+	</select>
+	
+	<select id="getRank3" resultType="BoardDto">
+		select *
+		from board
+		order by heartcount Desc Limit 11
+	</select>
+	
+	<!-- 파일 저장 
+	<insert id="registerFile" parameterType="BoardDto">
+		insert into file_info(boardno, savefolder, originfile, savefile)
+		values
+		<foreach collection="fileInfos" item="fileinfo" separator=" , ">
+			(#{boardno}, #{fileinfo.saveFolder}, #{fileinfo.originFile}, #{fileinfo.saveFile})
+		</foreach>
+	</insert>-->
+	
+	<!-- 게시글 등록 
+	<insert id="registerBoard" parameterType="BoardDto">
+		insert into board (sqft, housetype, style, space, subject, content, heartcount, img, email, nickname)
+		values (#{sqft}, #{housetype}, #{style}, #{space}, #{subject}, #{content}, 0, #{img}, #{email}, #{nickname})
+		<selectKey resultType="int" keyProperty="boardno" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>-->
+	
+	<!-- 파일 리스트 
+	<select id="fileInfoList" resultType="FileInfoDto">
+		select savefolder, originfile, savefile
+		from file_info
+		where boardno = #{boardno}
+	</select>-->
+	
+	<!-- 파일 삭제 
+	<delete id="deleteFile" parameterType="int">
+		delete from file_info
+		where boardno = #{boardno}
+	</delete>-->
+	
+	
+	
+	
+	
+</mapper>

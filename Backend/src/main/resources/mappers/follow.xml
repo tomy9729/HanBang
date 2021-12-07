@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.FollowMapper">
+
+	<insert id="insertFollow" parameterType="FollowDto">
+		insert into follow(fromuser, touser)
+		values (#{fromuser}, #{touser})
+	</insert>
+	
+	<delete id="deleteFollow" parameterType="FollowDto">
+		delete from follow
+		where fromuser = #{fromuser} and touser = #{touser}
+	</delete>
+	
+	<!-- 사용자"가" 구독한 사용자들은? -->
+	<select id="listFollowFromuser" resultType="FollowDto" parameterType="string">
+		select follno, fromuser, touser
+		from follow
+		where fromuser = #{fromuser}
+	</select>
+	
+	<!-- 사용자"가" 구독한 사용자들 수	 -->
+	<select id="getCountFromuser" resultType="int" parameterType="string">
+		select count(follno)
+		from follow
+		where fromuser = #{fromuser}
+	</select>
+	
+	<!-- 사용자"를" 구독한 사용자들은? -->
+	<select id="listFollowTouser" resultType="FollowDto" parameterType="string">
+		select follno, fromuser, touser
+		from follow
+		where touser = #{touser}
+	</select>
+	
+	<!-- 사용자"를" 구독한 사용자들 수 -->
+	<select id="getCountTouser" resultType="int" parameterType="string">
+		select count(follno)
+		from follow
+		where touser = #{touser}
+	</select>
+	
+	<select id="getFromTo" resultType="int" parameterType="FollowDto">
+		select follno
+		from follow
+		where touser = #{touser} and fromuser = #{fromuser}
+	</select>
+
+</mapper>

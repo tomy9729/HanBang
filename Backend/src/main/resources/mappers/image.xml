@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.hanbang.model.mapper.ImageMapper">
+
+	<insert id="insert" parameterType="ImageDto">
+		insert into image(bno, hno,imageName,imagePath)
+		values (#{bno}, #{hno}, #{imageName}, #{imagePath})
+	</insert>
+	
+	<delete id="deleteByboard" parameterType="int">
+		delete from image
+		where bno = #{bno}
+	</delete>
+	
+	<delete id="deleteByhouse" parameterType="int">
+		delete from image
+		where hno = #{hno}
+	</delete>
+	
+	<select id="selectBybno" resultType="ImageDto" parameterType="int">
+		select *
+		from image
+		where bno = #{bno}
+	</select>
+	
+	<select id="selectByhno" resultType="ImageDto" parameterType="int">
+		select *
+		from image
+		where hno = #{hno}
+	</select>
+	
+	<select id="select" resultType="ImageDto" parameterType="int">
+		select *
+		from image
+		where imageno = #{imageno}
+	</select>
+	
+	<select id="getImageno" resultType="int" parameterType="int">
+		select imageno
+		from image
+		order by imageno Desc Limit 1
+	</select>
+	
+	<update id="update" parameterType="ImageDto">
+		update image
+		set bno = #{bno},
+			hno = #{hno}
+		where imageno = #{imageno};
+	</update>
+</mapper>

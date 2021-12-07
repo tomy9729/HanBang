@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.hanbang.model.mapper.InterestMapper">
+	
+	<insert id="insertInterest" parameterType="InterestDto">
+		insert into interest(aptCode, userno)
+		values (#{aptCode}, #{userno})
+	</insert>
+	
+	<select id="listInterest" resultType="InterestDto" parameterType="int">
+		select interno, aptCode, userno
+		from interest
+		where userno = #{userno}
+	</select>
+	
+	<select id="selectInterest" resultType="InterestDto" parameterType="int">
+		select interno, aptCode, userno
+		from interest
+		where interno = #{interno}
+	</select>
+	
+	<update id="updateInterest" parameterType="InterestDto">
+		update interest
+		set aptCode = #{aptCode},
+		userno = #{userno} 
+		where interno = #{interno}
+	</update>
+	
+	<delete id="deleteInterest" parameterType="int">
+		delete from interest
+		where interno = #{interno}
+	</delete>
+	
+	<delete id="delete" parameterType="InterestDto">
+		delete from interest
+		where userno = #{userno} and aptCode=#{aptCode}
+	</delete>
+	
+	<select id="get" resultType="int" parameterType="InterestDto">
+		select interno
+		from interest
+		where userno = #{userno} and aptCode=#{aptCode}
+	</select>
+	
+</mapper>
