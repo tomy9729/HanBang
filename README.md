@@ -71,7 +71,7 @@
 <center><img src="/photo/mypage.JPG" width="50%" height="50%"></center>
 
 ## 2. 기술 스택
-### 2.1 벡엔드
+### 2.1 백엔드
 - Java
 - Spring Boot
 - MyBatis
